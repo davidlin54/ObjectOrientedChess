@@ -44,12 +44,14 @@ public class Piece {
 	public void TryToMove(Point p) {
 		if (CanMove(p) != MoveType.ILLEGAL) {
 			if (CanMove(p) == MoveType.ENPASSANT) {
+				int direction;
 				if (colour == Colour.WHITE) {
-					board.Move(location, p, null);
+					direction = 1;
 				}
 				else {
-					board.Move(location, p, null);
+					direction = -1;
 				}
+				board.PlacePieceAt(board.PieceAt(new Point(p.GetX(), p.GetY()+direction)), p);
 			}
 			else {
 				board.Move(location, p, null);

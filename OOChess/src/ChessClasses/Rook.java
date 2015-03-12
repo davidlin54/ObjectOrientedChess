@@ -1,8 +1,11 @@
 package ChessClasses;
 
 public class Rook extends Piece{
+	private int castle;
+	
 	public Rook(Point p, Colour c, Board b) {
 		super(p, c, b);
+		castle = 0;
 	}
 	
 	protected MoveType CanMove(Point p) {
@@ -31,5 +34,12 @@ public class Rook extends Piece{
 			return mt;
 		}
 		return MoveType.ILLEGAL;
+	}
+	
+	public void SetCastle(int castle) {
+		this.castle = castle;
+	}
+	public int GetCastle() { 
+		return castle;
 	}
 }

@@ -4,7 +4,6 @@ public class Board {
 	private Piece cboard[][] = new Piece[8][8];
 	private Colour turn;
 	private Point enpassant;
-	private int[] castle = new int[4];
 	
 	public Board() {
 		turn = Colour.WHITE;
@@ -51,25 +50,11 @@ public class Board {
 	}
 	
 	public void Move(Point p1, Point p2, Point ep) {
-		if (p1.GetX() == 0 && p1.GetY() == 0){
-			castle[0] = 1;
+		if (PieceAt(p1) instanceof Rook) {
+			((Rook) PieceAt(p1)).SetCastle(1);
 		}
-		else if (p1.GetX() == 7 && p1.GetY() == 0) {
-			castle[1] = 1;
-		}
-		else if (p1.GetX() == 0 && p1.GetY() == 7) {
-			castle[2] = 1;
-		}
-		else if (p1.GetX() == 7 && p1.GetY() == 7) {
-			castle[3] = 1;
-		}
-		else if (p1.GetX() == 4 && p1.GetY() == 0) {
-			castle[0] = 1; 
-			castle[1] = 1;
-		}
-		else if (p1.GetX() == 4 && p1.GetY() == 7) {
-			castle[2] = 1; 
-			castle[3] = 1;
+		else if (PieceAt(p1) instanceof King) {
+			((King) PieceAt(p1)).SetCastle(1);
 		}
 		enpassant = ep;
 		if (turn == Colour.WHITE) {

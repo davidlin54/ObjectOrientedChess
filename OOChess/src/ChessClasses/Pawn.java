@@ -49,7 +49,7 @@ public class Pawn extends Piece{
 			}
 			else {
 				if (mt == MoveType.ENPASSANT) {
-					super.board.PlacePieceAt(super.board.PieceAt(new Point(p.GetX(), p.GetY()-direction)), p);
+					super.board.PlacePieceAt(super.board.PieceAt(new Point(p.GetX(), p.GetY()+direction)), p);
 				}
 				super.board.Move(super.GetLocation(), p, null);
 			}
