@@ -58,14 +58,7 @@ public class Board {
 			((King) PieceAt(p1)).SetCastle(1);
 		}
 		enpassant = ep;
-		if (turn == Colour.WHITE) {
-			turn = Colour.BLACK;
-		}
-		else {
-			turn = Colour.WHITE;
-		}
 		PlacePieceAt(PieceAt(p1), p2);
-		cboard[p1.GetX()][p1.GetY()] = null;
 		if (PieceAt(p2) instanceof Pawn) {
 			if (turn == Colour.WHITE && p2.GetY() == 4 && p1.GetY() == 6) {
 				enpassant = new Point(p2.GetX(), p2.GetY()+1);
@@ -80,6 +73,12 @@ public class Board {
 		else {
 			enpassant = null;
 		}
+		if (turn == Colour.WHITE) {
+			turn = Colour.BLACK;
+		}
+		else {
+			turn = Colour.WHITE;
+		}
 	}
 	
 	public Piece PieceAt(Point p) {
@@ -87,6 +86,7 @@ public class Board {
 	}
 	
 	public void PlacePieceAt(Piece p, Point pt) {
+		cboard[p.GetLocation().GetX()][p.GetLocation().GetY()] = null;
 		p.SetLocation(pt);
 		cboard[pt.GetX()][pt.GetY()] = p;
 	}

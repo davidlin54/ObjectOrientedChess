@@ -19,12 +19,16 @@ public class Pawn extends Piece{
 		}
 		int dy = p.GetY() - this.GetLocation().GetY();
 		int dx = p.GetX() - this.GetLocation().GetX();
+		if (super.CanMove(p) == MoveType.ENPASSANT) {
+			if (dy == direction && Math.abs(dx) == 1) {
+				return MoveType.ENPASSANT;
+			}
+		}
 		if (dy == direction) {
-			if (Math.abs(dx) == 1 && super.board.PieceAt(p).GetColour() != super.GetColour()) {
+			if (dx == 0 && super.board.PieceAt(p) == null) {
 				return MoveType.NORMAL;
 			}
-			System.out.print(super.board.PieceAt(this.GetLocation()));
-			if (dx == 0 && super.board.PieceAt(p) == null) {
+			else if (Math.abs(dx) == 1 && super.board.PieceAt(p).GetColour() != super.GetColour()) {
 				return MoveType.NORMAL;
 			}
 		}
@@ -33,11 +37,6 @@ public class Pawn extends Piece{
 				this.board.PieceAt(p) == null &&
 				this.board.PieceAt(new Point(super.GetLocation().GetX(), super.GetLocation().GetY() + direction)) == null) {
 			return MoveType.DOUBLE;
-		}
-		if (super.CanMove(p) == MoveType.ENPASSANT) {
-			if (dy == 0 && Math.abs(dx) == 1 && super.board.PieceAt(p).GetColour() != super.GetColour()) {
-				return MoveType.ENPASSANT;
-			}
 		}
 		return MoveType.ILLEGAL;
 	}
@@ -50,7 +49,7 @@ public class Pawn extends Piece{
 			}
 			else {
 				if (mt == MoveType.ENPASSANT) {
-					super.board.PlacePieceAt(super.board.PieceAt(new Point(p.GetX(), p.GetY()+direction)), p);
+					super.board.PlacePieceAt(super.board.PieceAt(new Point(p.GetX(), p.GetY()-direction)), p);
 				}
 				super.board.Move(super.GetLocation(), p, null);
 			}

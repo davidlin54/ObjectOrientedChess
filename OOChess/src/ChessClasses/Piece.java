@@ -8,7 +8,9 @@ public class Piece {
 	protected MoveType CanMove(Point p) {
 		if (p.GetX() >= 0 && p.GetX() <= 7 && p.GetY() >= 0 && p.GetY() <= 7) {
 			if (board.PieceAt(p) == null) {
-				if (board.GetEnpassant() == p) {
+				if (board.GetEnpassant() != null &&
+						board.GetEnpassant().GetX() == p.GetX() &&
+						board.GetEnpassant().GetY() == p.GetY()) {
 					return MoveType.ENPASSANT;
 				}
 				else {
