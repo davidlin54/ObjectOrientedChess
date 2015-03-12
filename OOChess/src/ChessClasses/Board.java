@@ -10,8 +10,8 @@ public class Board {
 		enpassant = null;
 		Piece tempPiece = null;
 		Colour pColour;
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 8; j++) {
+		for (int j = 0; j < 8; j++) {
+			for (int i = 0; i < 8; i++) {
 				if (j == 0 || j == 7) {
 					if (j == 0) {
 						pColour = Colour.BLACK;
@@ -34,6 +34,7 @@ public class Board {
 					else {
 						tempPiece = new King(new Point(i, j), pColour, this);
 					}
+					cboard[i][j] = tempPiece;
 				}
 				else if (j == 1 || j == 6) {
 					if (j == 1) {
@@ -43,8 +44,8 @@ public class Board {
 						pColour = Colour.WHITE;
 					}
 					tempPiece = new Pawn(new Point(i, j), pColour, this);
+					cboard[i][j] = tempPiece;
 				}
-				cboard[i][j] = tempPiece;
 			}
 		}
 	}

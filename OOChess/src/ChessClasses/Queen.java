@@ -14,8 +14,8 @@ public class Queen extends Piece{
 		int dx = p.GetX() - super.GetLocation().GetX();
 		if (dy == 0 && dx != 0) {
 			for (int i=1; i<Math.abs(dx); i++) {
-				if (super.board.PieceAt(new Point(p.GetX()+dx/Math.abs(dx)*i,
-						p.GetY())) != null) {
+				if (super.board.PieceAt(new Point(super.GetLocation().GetX()+dx/Math.abs(dx)*i,
+						super.GetLocation().GetY())) != null) {
 					return MoveType.ILLEGAL;
 				}
 			}
@@ -23,8 +23,8 @@ public class Queen extends Piece{
 		}
 		else if (dy != 0 && dx == 0) {
 			for (int i=1; i<Math.abs(dy); i++) {
-				if (super.board.PieceAt(new Point(p.GetX(),
-						p.GetY()+dx/Math.abs(dx)*i)) != null) {
+				if (super.board.PieceAt(new Point(super.GetLocation().GetX(),
+						super.GetLocation().GetY()+dy/Math.abs(dy)*i)) != null) {
 					return MoveType.ILLEGAL;
 				}
 			}
@@ -32,8 +32,8 @@ public class Queen extends Piece{
 		}
 		else if (Math.abs(dy) == Math.abs(dx)) {
 			for (int i=1; i<Math.abs(dx); i++) {
-				if (super.board.PieceAt(new Point(p.GetX()+dx/Math.abs(dx)*i,
-						p.GetY()+dy/Math.abs(dy)*i)) != null) {
+				if (super.board.PieceAt(new Point(super.GetLocation().GetX()+dx/Math.abs(dx)*i,
+						super.GetLocation().GetY()+dy/Math.abs(dy)*i)) != null) {
 					return MoveType.ILLEGAL;
 				}
 			}

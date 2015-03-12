@@ -6,10 +6,10 @@ public class Pawn extends Piece{
 	public Pawn(Point p, Colour c, Board b) {
 		super(p, c, b);
 		if (c == Colour.WHITE) {
-			direction = 1;
+			direction = -1;
 		}
 		else {
-			direction = -1;
+			direction = 1;
 		}
 	}
 	
@@ -23,6 +23,7 @@ public class Pawn extends Piece{
 			if (Math.abs(dx) == 1 && super.board.PieceAt(p).GetColour() != super.GetColour()) {
 				return MoveType.NORMAL;
 			}
+			System.out.print(super.board.PieceAt(this.GetLocation()));
 			if (dx == 0 && super.board.PieceAt(p) == null) {
 				return MoveType.NORMAL;
 			}

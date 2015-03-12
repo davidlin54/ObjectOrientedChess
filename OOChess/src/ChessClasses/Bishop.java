@@ -14,8 +14,8 @@ public class Bishop extends Piece{
 		int dx = p.GetX() - super.GetLocation().GetX();
 		if (Math.abs(dy) == Math.abs(dx)) {
 			for (int i=1; i<Math.abs(dx); i++) {
-				if (super.board.PieceAt(new Point(p.GetX()+dx/Math.abs(dx)*i,
-						p.GetY()+dy/Math.abs(dy)*i)) != null) {
+				if (super.board.PieceAt(new Point(super.GetLocation().GetX()+dx/Math.abs(dx)*i,
+						super.GetLocation().GetY()+dy/Math.abs(dy)*i)) != null) {
 					return MoveType.ILLEGAL;
 				}
 			}
