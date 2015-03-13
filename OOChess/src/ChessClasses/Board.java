@@ -3,10 +3,12 @@ package ChessClasses;
 public class Board {
 	private Piece cboard[][] = new Piece[8][8];
 	private Colour turn;
+	private History last;
 	private Point enpassant;
 	
 	public Board() {
 		turn = Colour.WHITE;
+		last = null;
 		enpassant = null;
 		Piece tempPiece = null;
 		Colour pColour;
@@ -50,14 +52,14 @@ public class Board {
 		}
 	}
 	
-	public void Move(Point p1, Point p2, Point ep) {
+	public void Move(Point p1, Point p2) {
+		last = new History(p1, p2, this, last);
 		if (PieceAt(p1) instanceof Rook) {
 			((Rook) PieceAt(p1)).SetCastle(1);
 		}
 		else if (PieceAt(p1) instanceof King) {
 			((King) PieceAt(p1)).SetCastle(1);
 		}
-		enpassant = ep;
 		PlacePieceAt(PieceAt(p1), p2);
 		if (PieceAt(p2) instanceof Pawn) {
 			if (turn == Colour.WHITE && p2.GetY() == 4 && p1.GetY() == 6) {
@@ -100,5 +102,13 @@ public class Board {
 	
 	public Point GetEnpassant() {
 		return enpassant;
+	} 
+	
+	public void SetLast(History n) {
+		last = n;
+	}
+	
+	public void SetEnpassant(Point n) {
+		enpassant = n;
 	}
 }

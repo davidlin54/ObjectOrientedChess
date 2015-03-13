@@ -45,13 +45,13 @@ public class Pawn extends Piece{
 		MoveType mt = CanMove(p);
 		if (mt != MoveType.ILLEGAL) {
 			if (mt == MoveType.DOUBLE) {
-				super.board.Move(super.GetLocation(), p, new Point(p.GetX(), p.GetY() - direction));
+				super.board.Move(super.GetLocation(), p);
 			}
 			else {
 				if (mt == MoveType.ENPASSANT) {
 					super.board.PlacePieceAt(super.board.PieceAt(new Point(p.GetX(), p.GetY()-direction)), p);
 				}
-				super.board.Move(super.GetLocation(), p, null);
+				super.board.Move(super.GetLocation(), p);
 			}
 		}
 	}

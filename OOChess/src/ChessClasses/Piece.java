@@ -56,7 +56,7 @@ public class Piece {
 				board.PlacePieceAt(board.PieceAt(new Point(p.GetX(), p.GetY()+direction)), p);
 			}
 			else {
-				board.Move(location, p, null);
+				board.Move(location, p);
 			}
 		}
 	}
