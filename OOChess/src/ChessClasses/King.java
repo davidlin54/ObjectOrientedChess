@@ -26,6 +26,7 @@ public class King extends Piece{
 						super.board.PieceAt(new Point(2, p.GetY())) == null &&
 						super.board.PieceAt(new Point(3, p.GetY())) == null) {
 					super.board.PlacePieceAt(super.board.PieceAt(new Point(0, p.GetY())), new Point(3, p.GetY()));
+					castle = 1;
 					return MoveType.CASTLE;
 				}
 			}
@@ -34,6 +35,7 @@ public class King extends Piece{
 						super.board.PieceAt(new Point(6, p.GetY())) == null &&
 						super.board.PieceAt(new Point(5, p.GetY())) == null) {
 					super.board.PlacePieceAt(super.board.PieceAt(new Point(7, p.GetY())), new Point(5, p.GetY()));
+					castle = 1;
 					return MoveType.CASTLE;
 				}
 			}
