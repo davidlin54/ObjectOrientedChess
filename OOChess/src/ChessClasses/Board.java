@@ -53,7 +53,13 @@ public class Board {
 	}
 	
 	public void Move(Point p1, Point p2) {
-		last = new History(p1, p2, this, last);
+		if (last == null) {
+			last = new History(p1, p2, this, null);
+		}
+		else {
+			last.SetNext(new History(p1, p2, this, last));
+			last = new History(p1, p2, this, last);
+		}
 		if (PieceAt(p1) instanceof Rook) {
 			((Rook) PieceAt(p1)).SetCastle(1);
 		}
@@ -81,6 +87,34 @@ public class Board {
 		else {
 			turn = Colour.WHITE;
 		}
+		/*
+		for (int j = 0; j < 8; j++) {
+			for (int i = 0; i < 8; i++) {
+				String hi = null;
+				if (cboard[i][j] instanceof Pawn) {
+					hi = "Pawn";
+				}
+				if (cboard[i][j] instanceof King) {
+					hi = "King";
+				}
+				if (cboard[i][j] instanceof Knight) {
+					hi = "Knight";
+				}
+				if (cboard[i][j] instanceof Queen) {
+					hi = "Queen";
+				}
+				if (cboard[i][j] instanceof Bishop) {
+					hi = "Bishop";
+				}
+				if (cboard[i][j] instanceof Rook) {
+					hi = "Rook";
+				}
+				System.out.print(hi+" ");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		*/
 	}
 	
 	public Piece PieceAt(Point p) {
@@ -110,5 +144,22 @@ public class Board {
 	
 	public void SetEnpassant(Point n) {
 		enpassant = n;
+	}
+	
+	public void Undo() {
+		last.Undo();
+	}
+	
+	public void Redo() {
+		last.Redo();
+	}
+	
+	public void SetTurn() {
+		if (turn == Colour.WHITE) {
+			turn = Colour.BLACK;
+		}
+		else {
+			turn = Colour.WHITE;
+		}
 	}
 }

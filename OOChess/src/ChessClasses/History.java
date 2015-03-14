@@ -48,12 +48,15 @@ public class History {
 				this.board.SetEnpassant(to);
 			}
 			this.board.SetLast(prev);
+			System.out.print(next);
+			this.board.SetTurn();
 		}
 	}
 	
 	public void Redo() {
 		if (next != null) {
 			this.board.TryToMove(next.from, next.to);
+			System.out.print(next.from.GetX()+" "+next.from.GetY());
 		}
 	}
 }
