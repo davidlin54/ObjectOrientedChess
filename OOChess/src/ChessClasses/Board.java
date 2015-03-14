@@ -60,13 +60,13 @@ public class Board {
 			last.SetNext(new History(p1, p2, this, last));
 			last = new History(p1, p2, this, last);
 		}
-		if (PieceAt(p1) instanceof Rook) {
-			((Rook) PieceAt(p1)).SetCastle(1);
-		}
-		else if (PieceAt(p1) instanceof King) {
-			((King) PieceAt(p1)).SetCastle(1);
-		}
 		PlacePieceAt(PieceAt(p1), p2);
+		if (PieceAt(p2) instanceof Rook) {
+			((Rook) PieceAt(p2)).SetCastle();
+		}
+		else if (PieceAt(p2) instanceof King) {
+			((King) PieceAt(p2)).SetCastle();
+		}
 		if (PieceAt(p2) instanceof Pawn) {
 			if (turn == Colour.WHITE && p2.GetY() == 4 && p1.GetY() == 6) {
 				enpassant = new Point(p2.GetX(), p2.GetY()+1);

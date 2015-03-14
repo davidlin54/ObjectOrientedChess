@@ -36,10 +36,15 @@ public class Rook extends Piece{
 		return MoveType.ILLEGAL;
 	}
 	
-	public void SetCastle(int castle) {
-		this.castle = castle;
+	public void SetCastle() {
+		this.castle ++;
 	}
+	
+	public void PrevCastle() {
+		this.castle --;
+	}
+	
 	public int GetCastle() { 
-		return castle;
+		return this.castle;
 	}
 }

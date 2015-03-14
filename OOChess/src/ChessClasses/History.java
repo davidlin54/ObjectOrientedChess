@@ -24,6 +24,12 @@ public class History {
 	
 	public void Undo() {
 		if (prev != null) {
+			if (this.board.PieceAt(to) instanceof Rook) {
+				((Rook) this.board.PieceAt(to)).PrevCastle();
+			}
+			if (this.board.PieceAt(to) instanceof King) {
+				((King) this.board.PieceAt(to)).PrevCastle();
+			}
 			this.board.PlacePieceAt(board.PieceAt(to), from);
 			if (killed != null) {
 				this.board.PlacePieceAt(killed, to);
@@ -31,11 +37,9 @@ public class History {
 			else if (this.board.PieceAt(from) instanceof King) {
 				if (from.GetX() - to.GetX() == 2) {
 					this.board.PlacePieceAt(this.board.PieceAt(new Point(3, from.GetY())), new Point(0, from.GetY()));
-					((King) this.board.PieceAt(from)).SetCastle(0);
 				}
 				else if (from.GetX() - to.GetX() == -2){
 					this.board.PlacePieceAt(this.board.PieceAt(new Point(5, from.GetY())), new Point(7, from.GetY()));
-					((King) this.board.PieceAt(from)).SetCastle(0);
 				}
 			}
 			else if (this.board.PieceAt(from) instanceof Pawn && Math.abs(to.GetX() - from.GetX()) == 1) {

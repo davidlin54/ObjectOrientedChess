@@ -26,16 +26,14 @@ public class King extends Piece{
 						super.board.PieceAt(new Point(2, p.GetY())) == null &&
 						super.board.PieceAt(new Point(3, p.GetY())) == null) {
 					super.board.PlacePieceAt(super.board.PieceAt(new Point(0, p.GetY())), new Point(3, p.GetY()));
-					castle = 1;
 					return MoveType.CASTLE;
 				}
 			}
-			else if (super.board.PieceAt(new Point(7, p.GetY())) instanceof Rook) {
+			else if (dx > 0 && super.board.PieceAt(new Point(7, p.GetY())) instanceof Rook) {
 				if (((Rook)super.board.PieceAt(new Point(7, p.GetY()))).GetCastle() == 0 &&
 						super.board.PieceAt(new Point(6, p.GetY())) == null &&
 						super.board.PieceAt(new Point(5, p.GetY())) == null) {
 					super.board.PlacePieceAt(super.board.PieceAt(new Point(7, p.GetY())), new Point(5, p.GetY()));
-					castle = 1;
 					return MoveType.CASTLE;
 				}
 			}
@@ -43,7 +41,11 @@ public class King extends Piece{
 		return MoveType.ILLEGAL;
 	}
 	
-	public void SetCastle(int castle) {
-		this.castle = castle;
+	public void SetCastle() {
+		this.castle ++;
+	}
+	
+	public void PrevCastle() {
+		this.castle --;
 	}
 }
