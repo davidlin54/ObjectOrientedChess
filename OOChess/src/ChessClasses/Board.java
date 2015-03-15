@@ -81,12 +81,7 @@ public class Board {
 		else {
 			enpassant = null;
 		}
-		if (turn == Colour.WHITE) {
-			turn = Colour.BLACK;
-		}
-		else {
-			turn = Colour.WHITE;
-		}
+		this.SetTurn();
 		/*
 		for (int j = 0; j < 8; j++) {
 			for (int i = 0; i < 8; i++) {
@@ -113,8 +108,7 @@ public class Board {
 			}
 			System.out.println();
 		}
-		System.out.println();
-		*/
+		System.out.println();*/
 	}
 	
 	public Piece PieceAt(Point p) {
@@ -140,6 +134,10 @@ public class Board {
 	
 	public void SetLast(History n) {
 		last = n;
+	}
+	
+	public History GetLast() {
+		return last;
 	}
 	
 	public void SetEnpassant(Point n) {
